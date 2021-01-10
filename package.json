@@ -3,7 +3,7 @@
    "version": "0.1.0",
    "private": true,
    "scripts": {
-      "dev": "next dev",
+      "dev": " concurrently \"next dev\" \"babel ./src -w --out-dir dist --extensions .ts,.tsx\" ",
       "build": "next build",
       "start": "ts-node src/index.ts",
       "migration:run": "typeorm migration:run",

@@ -17,7 +17,7 @@ export class CreactPost1610288581720 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        // 降级数sssssssssssss据库的
+        // 降级数据库的
       return await queryRunner.dropTable('posts')
     }
 
