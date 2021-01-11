@@ -1,6 +1,5 @@
 # 创建数据库
-docker run -v f:xxx/xxx: /var/lib/postersql/data -p 5432:5432 -e POSTGRES_USER=xxx -e POSTRGRES_PASSWORD=XXX --nane xxx id(imagesid)
-
+ docker run -v  F:\blog\blog-data:/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_PASSWORD=blog --name postgresql 1f1bd4302537
 # 进入容器
 docker exec -it 容器id bash
 

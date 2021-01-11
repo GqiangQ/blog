@@ -5,7 +5,7 @@ var _interopRequireDefault = require("F:/blog/node_modules/@babel/runtime/helper
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CreateUsers1610374438691 = void 0;
+exports.CreatePosts1610377230157 = void 0;
 
 var _regenerator = _interopRequireDefault(require("F:/blog/node_modules/@babel/runtime/regenerator"));
 
@@ -17,12 +17,12 @@ var _createClass2 = _interopRequireDefault(require("F:/blog/node_modules/@babel/
 
 var _typeorm = require("typeorm");
 
-var CreateUsers1610374438691 = /*#__PURE__*/function () {
-  function CreateUsers1610374438691() {
-    (0, _classCallCheck2["default"])(this, CreateUsers1610374438691);
+var CreatePosts1610377230157 = /*#__PURE__*/function () {
+  function CreatePosts1610377230157() {
+    (0, _classCallCheck2["default"])(this, CreatePosts1610377230157);
   }
 
-  (0, _createClass2["default"])(CreateUsers1610374438691, [{
+  (0, _createClass2["default"])(CreatePosts1610377230157, [{
     key: "up",
     value: function () {
       var _up = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(queryRunner) {
@@ -32,7 +32,7 @@ var CreateUsers1610374438691 = /*#__PURE__*/function () {
               case 0:
                 _context.next = 2;
                 return queryRunner.createTable(new _typeorm.Table({
-                  name: 'users',
+                  name: 'posts',
                   columns: [{
                     name: 'id',
                     isGenerated: true,
@@ -40,11 +40,14 @@ var CreateUsers1610374438691 = /*#__PURE__*/function () {
                     generationStrategy: "increment",
                     isPrimary: true
                   }, {
-                    name: 'username',
+                    name: 'title',
                     type: 'varchar'
                   }, {
-                    name: 'password_digest',
-                    type: 'varchar'
+                    name: 'content',
+                    type: 'text'
+                  }, {
+                    name: 'author_id',
+                    type: 'int'
                   }, {
                     name: 'createAt',
                     type: 'time',
@@ -83,10 +86,9 @@ var CreateUsers1610374438691 = /*#__PURE__*/function () {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return queryRunner.dropTable('users');
+                queryRunner.dropTable('posts');
 
-              case 2:
+              case 1:
               case "end":
                 return _context2.stop();
             }
@@ -101,7 +103,7 @@ var CreateUsers1610374438691 = /*#__PURE__*/function () {
       return down;
     }()
   }]);
-  return CreateUsers1610374438691;
+  return CreatePosts1610377230157;
 }();
 
-exports.CreateUsers1610374438691 = CreateUsers1610374438691;
+exports.CreatePosts1610377230157 = CreatePosts1610377230157;

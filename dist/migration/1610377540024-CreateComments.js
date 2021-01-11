@@ -5,7 +5,7 @@ var _interopRequireDefault = require("F:/blog/node_modules/@babel/runtime/helper
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CreateUsers1610374438691 = void 0;
+exports.CreateComments1610377540024 = void 0;
 
 var _regenerator = _interopRequireDefault(require("F:/blog/node_modules/@babel/runtime/regenerator"));
 
@@ -17,12 +17,12 @@ var _createClass2 = _interopRequireDefault(require("F:/blog/node_modules/@babel/
 
 var _typeorm = require("typeorm");
 
-var CreateUsers1610374438691 = /*#__PURE__*/function () {
-  function CreateUsers1610374438691() {
-    (0, _classCallCheck2["default"])(this, CreateUsers1610374438691);
+var CreateComments1610377540024 = /*#__PURE__*/function () {
+  function CreateComments1610377540024() {
+    (0, _classCallCheck2["default"])(this, CreateComments1610377540024);
   }
 
-  (0, _createClass2["default"])(CreateUsers1610374438691, [{
+  (0, _createClass2["default"])(CreateComments1610377540024, [{
     key: "up",
     value: function () {
       var _up = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(queryRunner) {
@@ -32,7 +32,7 @@ var CreateUsers1610374438691 = /*#__PURE__*/function () {
               case 0:
                 _context.next = 2;
                 return queryRunner.createTable(new _typeorm.Table({
-                  name: 'users',
+                  name: 'comments',
                   columns: [{
                     name: 'id',
                     isGenerated: true,
@@ -40,18 +40,16 @@ var CreateUsers1610374438691 = /*#__PURE__*/function () {
                     generationStrategy: "increment",
                     isPrimary: true
                   }, {
-                    name: 'username',
-                    type: 'varchar'
+                    name: 'user_id',
+                    type: 'int'
                   }, {
-                    name: 'password_digest',
-                    type: 'varchar'
+                    name: 'post_id',
+                    type: 'int'
+                  }, {
+                    name: 'content',
+                    type: 'text'
                   }, {
                     name: 'createAt',
-                    type: 'time',
-                    isNullable: false,
-                    "default": 'now()'
-                  }, {
-                    name: 'updateAt',
                     type: 'time',
                     isNullable: false,
                     "default": 'now()'
@@ -83,10 +81,9 @@ var CreateUsers1610374438691 = /*#__PURE__*/function () {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return queryRunner.dropTable('users');
+                queryRunner.dropTable('comments');
 
-              case 2:
+              case 1:
               case "end":
                 return _context2.stop();
             }
@@ -101,7 +98,7 @@ var CreateUsers1610374438691 = /*#__PURE__*/function () {
       return down;
     }()
   }]);
-  return CreateUsers1610374438691;
+  return CreateComments1610377540024;
 }();
 
-exports.CreateUsers1610374438691 = CreateUsers1610374438691;
+exports.CreateComments1610377540024 = CreateComments1610377540024;
