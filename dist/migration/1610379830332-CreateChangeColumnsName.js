@@ -5,7 +5,7 @@ var _interopRequireDefault = require("F:/blog/node_modules/@babel/runtime/helper
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CreateUsers1610374438691 = void 0;
+exports.CreateChangeColumnsName1610379830332 = void 0;
 
 var _regenerator = _interopRequireDefault(require("F:/blog/node_modules/@babel/runtime/regenerator"));
 
@@ -15,14 +15,12 @@ var _classCallCheck2 = _interopRequireDefault(require("F:/blog/node_modules/@bab
 
 var _createClass2 = _interopRequireDefault(require("F:/blog/node_modules/@babel/runtime/helpers/createClass"));
 
-var _typeorm = require("typeorm");
-
-var CreateUsers1610374438691 = /*#__PURE__*/function () {
-  function CreateUsers1610374438691() {
-    (0, _classCallCheck2["default"])(this, CreateUsers1610374438691);
+var CreateChangeColumnsName1610379830332 = /*#__PURE__*/function () {
+  function CreateChangeColumnsName1610379830332() {
+    (0, _classCallCheck2["default"])(this, CreateChangeColumnsName1610379830332);
   }
 
-  (0, _createClass2["default"])(CreateUsers1610374438691, [{
+  (0, _createClass2["default"])(CreateChangeColumnsName1610379830332, [{
     key: "up",
     value: function () {
       var _up = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(queryRunner) {
@@ -31,37 +29,21 @@ var CreateUsers1610374438691 = /*#__PURE__*/function () {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return queryRunner.createTable(new _typeorm.Table({
-                  name: 'users',
-                  columns: [{
-                    name: 'id',
-                    isGenerated: true,
-                    type: 'int',
-                    generationStrategy: "increment",
-                    isPrimary: true
-                  }, {
-                    name: 'username',
-                    type: 'varchar'
-                  }, {
-                    name: 'passwordDigest',
-                    type: 'varchar'
-                  }, {
-                    name: 'createAt',
-                    type: 'time',
-                    isNullable: false,
-                    "default": 'now()'
-                  }, {
-                    name: 'updateAt',
-                    type: 'time',
-                    isNullable: false,
-                    "default": 'now()'
-                  }]
-                }));
+                return queryRunner.renameColumn('users', 'password_digest', 'passwordDigest');
 
               case 2:
-                return _context.abrupt("return", _context.sent);
+                _context.next = 4;
+                return queryRunner.renameColumn('posts', 'author_id', 'authorId');
 
-              case 3:
+              case 4:
+                _context.next = 6;
+                return queryRunner.renameColumn('comments', 'user_id', 'userId');
+
+              case 6:
+                _context.next = 8;
+                return queryRunner.renameColumn('comments', 'post_id', 'postId');
+
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -83,10 +65,6 @@ var CreateUsers1610374438691 = /*#__PURE__*/function () {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return queryRunner.dropTable('users');
-
-              case 2:
               case "end":
                 return _context2.stop();
             }
@@ -101,7 +79,7 @@ var CreateUsers1610374438691 = /*#__PURE__*/function () {
       return down;
     }()
   }]);
-  return CreateUsers1610374438691;
+  return CreateChangeColumnsName1610379830332;
 }();
 
-exports.CreateUsers1610374438691 = CreateUsers1610374438691;
+exports.CreateChangeColumnsName1610379830332 = CreateChangeColumnsName1610379830332;
