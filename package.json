@@ -6,8 +6,9 @@
       "dev": " concurrently \"next dev\" \"babel ./src -w --out-dir dist --extensions .ts,.tsx\" ",
       "build": "next build",
       "start": "ts-node src/index.ts",
-      "migration:run": "typeorm migration:run",
-      "migration:revert": "typeorm migration:revert",
+      "m:create": "typeorm migration:create",
+      "m:run": "typeorm migration:run",
+      "m:revert": "typeorm migration:revert",
       "entity:create": "typeorm entity:create",
       "babel:build": "babel ./src --out-dir dist --extensions \".ts,.tsx\" "
    },
