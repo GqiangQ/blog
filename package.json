@@ -8,8 +8,8 @@
       "start": "ts-node src/index.ts",
       "migration:run": "typeorm migration:run",
       "migration:revert": "typeorm migration:revert",
-      "babel:build": "babel ./src --out-dir dist --extensions \".ts,.tsx\" ",
-      "babel:watch": "babel ./src -w --out-dir dist --extensions \".ts,.tsx\" "
+      "entity:create": "typeorm entity:create",
+      "babel:build": "babel ./src --out-dir dist --extensions \".ts,.tsx\" "
    },
    "dependencies": {
       "@babel/cli": "^7.12.10",
