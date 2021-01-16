@@ -47,12 +47,12 @@ var CreateUsers1610374438691 = /*#__PURE__*/function () {
                     type: 'varchar'
                   }, {
                     name: 'createAt',
-                    type: 'time',
+                    type: 'timestamp',
                     isNullable: false,
                     "default": 'now()'
                   }, {
                     name: 'updateAt',
-                    type: 'time',
+                    type: 'timestamp',
                     isNullable: false,
                     "default": 'now()'
                   }]

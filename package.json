@@ -5,7 +5,6 @@
    "scripts": {
       "dev": " concurrently \"next dev\" \"babel ./src -w --out-dir dist --extensions .ts,.tsx\" ",
       "build": "next build",
-      "start": "ts-node src/index.ts",
       "m:create": "typeorm migration:create",
       "m:run": "typeorm migration:run",
       "m:revert": "typeorm migration:revert",

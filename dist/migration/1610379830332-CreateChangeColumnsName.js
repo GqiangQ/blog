@@ -28,22 +28,6 @@ var CreateChangeColumnsName1610379830332 = /*#__PURE__*/function () {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return queryRunner.renameColumn('users', 'password_digest', 'passwordDigest');
-
-              case 2:
-                _context.next = 4;
-                return queryRunner.renameColumn('posts', 'author_id', 'authorId');
-
-              case 4:
-                _context.next = 6;
-                return queryRunner.renameColumn('comments', 'user_id', 'userId');
-
-              case 6:
-                _context.next = 8;
-                return queryRunner.renameColumn('comments', 'post_id', 'postId');
-
-              case 8:
               case "end":
                 return _context.stop();
             }

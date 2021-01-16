@@ -4,7 +4,7 @@ import {Comment} from "./Comment";
 // 评论
 
 
-@Entity()
+@Entity('posts')
 export class Post {
   @PrimaryGeneratedColumn("increment")
   id: number
@@ -14,9 +14,9 @@ export class Post {
   content: string
   @Column("int")
   authorId: number
-  @Column("time")
+  @Column({type:"timestamp"})
   createAt: Date
-  @Column("time")
+  @Column({type: "timestamp"})
   updateAt: Date
   
   @ManyToOne(type =>User, user => user.post )

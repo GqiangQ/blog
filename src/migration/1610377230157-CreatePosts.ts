@@ -11,9 +11,9 @@ export class CreatePosts1610377230157 implements MigrationInterface {
                 { name: 'id', isGenerated: true, type: 'int', generationStrategy:"increment", isPrimary: true },
                 { name: 'title',type: 'varchar' },
                 { name: 'content',type: 'text' },
-                { name: 'author_id', type: 'int' },
-                { name: 'createAt', type: 'time', isNullable: false, default: 'now()' },
-                { name: 'updateAt', type: 'time', isNullable: false, default: 'now()' }
+                { name: 'authorId', type: 'int' },
+                { name: 'createAt', type: 'timestamp', isNullable: false, default: 'now()' },
+                { name: 'updateAt', type: 'timestamp', isNullable: false, default: 'now()' }
               ]
           })
         )

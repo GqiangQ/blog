@@ -4,7 +4,7 @@ import  {Comment} from './Comment'
 // 用户
 
 
-@Entity()
+@Entity('users')
 export class User {
   @PrimaryGeneratedColumn("increment")
   id: number
@@ -12,10 +12,12 @@ export class User {
   username: string;
   @Column("varchar")
   passwordDigest: string
-  @Column("time")
+  @Column({type:"timestamp"})
   createAt: Date
-  @Column("time")
+  @Column({type: "timestamp"})
   updateAt: Date
+  
+  
   @OneToMany(type=>Post, post=>post.author)
   post: Post[]
   @OneToMany(type=>Comment, comment=>comment.user)

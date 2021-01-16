@@ -46,16 +46,16 @@ var CreatePosts1610377230157 = /*#__PURE__*/function () {
                     name: 'content',
                     type: 'text'
                   }, {
-                    name: 'author_id',
+                    name: 'authorId',
                     type: 'int'
                   }, {
                     name: 'createAt',
-                    type: 'time',
+                    type: 'timestamp',
                     isNullable: false,
                     "default": 'now()'
                   }, {
                     name: 'updateAt',
-                    type: 'time',
+                    type: 'timestamp',
                     isNullable: false,
                     "default": 'now()'
                   }]
