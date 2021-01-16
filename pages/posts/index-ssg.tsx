@@ -2,6 +2,8 @@ import { NextPage } from "next";
 import { type } from "os";
 import { usePosts } from "../../hooks/usePosts";
 import { getPosts } from "../../lib/posts";
+import {createConnection} from "typeorm";
+import  getDatabaseConnection from '../../lib/getDatabaseConnection'
 
 
 type Props = {
@@ -21,6 +23,8 @@ const PostsIndex: NextPage<Props> = (props) => {
 };
 export default PostsIndex
 export const getStaticProps = async() => {
+  const onnection = await getDatabaseConnection()
+  console.log('o  nne   ction')
   const posts = await getPosts()
   return {
     props: {posts}

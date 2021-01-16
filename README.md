@@ -9,3 +9,7 @@ docker exec -it 容器id bash
  ··查看表: \l
  删库：  drop database xxx库名;
  
+ # 创建数据表
+ 
+ 
+ 
