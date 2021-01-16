@@ -9,7 +9,7 @@
       "m:create": "typeorm migration:create",
       "m:run": "typeorm migration:run",
       "m:revert": "typeorm migration:revert",
-      "entity:create": "typeorm entity:create",
+      "e:create": "typeorm entity:create",
       "babel:build": "babel ./src --out-dir dist --extensions \".ts,.tsx\" "
    },
    "dependencies": {
