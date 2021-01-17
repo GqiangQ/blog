@@ -1,32 +1,32 @@
-import { NextPage } from "next";
-import { type } from "os";
-import { usePosts } from "../../hooks/usePosts";
-import { getPosts } from "../../lib/posts";
-import {createConnection} from "typeorm";
-import  getDatabaseConnection from '../../lib/getDatabaseConnection'
-
+import {GetServerSideProps, NextPage} from 'next';
+import {useEffect, useState} from 'react';
+import getDatabaseConnection from "../../lib/getDatabaseConnection";
+import { Post }from "../../src/entity/Post";
 
 type Props = {
-  posts:Post[]
+  posts: Post[]
 }
-
-const PostsIndex: NextPage<Props> = (props) => {
+const index: NextPage<Props> = (props) => {
   const { posts } = props
-  return (
-    <div>
+  console.log(posts)
+  return (<div>
       <h1>文章列表</h1>
-      {
-        posts.map(p =><div key={p.id}>{p.title}{p.date}</div>)
-      }
-    </div> 
-  );
+      <div>
+        {posts.map((item)=><div key={item.id}>{item.title}{item.content}</div>)
+        }
+      </div>
+    </div>)
 };
-export default PostsIndex
-export const getStaticProps = async() => {
-  const onnection = await getDatabaseConnection()
-  console.log('o  nne   ction')
-  const posts = await getPosts()
+export default index;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const commention =  await getDatabaseConnection()
+  let posts = await commention.manager.find('posts')
+  posts = JSON.parse(JSON.stringify(posts))
+  console.log(posts)
   return {
-    props: {posts}
-  }
-}
+    props: {
+      posts: posts
+    }
+  };
+};
