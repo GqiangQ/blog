@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }) {
         <title>博客系统</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Component {...pageProps} />)
+      <Component {...pageProps} />
   </div>
   )
 }

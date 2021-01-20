@@ -9,8 +9,7 @@ type Props = {
 const index: NextPage<Props> = (props) => {
   const { posts } = props
   console.log(posts)
-  return (
-    <div>
+  return <div>
       <h1>文章列表</h1>
       {posts.map((item) => (
         <Link key={item.id} href={`/posts/${item.id}`}>
@@ -18,7 +17,6 @@ const index: NextPage<Props> = (props) => {
         </Link>))
       }
     </div>
-  );
 };
 export default index;
 
