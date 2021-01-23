@@ -19,7 +19,6 @@ const Users:NextApiHandler = async(req:NextApiRequest, res: NextApiResponse) => 
       user.passwordDigest = md5(password)
       await connection.manager.save('users',user)
       return {code:0, data:{ id: user.id}, msg: '添加成功'}
-      // return {code:0, data:{ }, msg: "假添加"}
     }
   })()
   req.statusCode = 200

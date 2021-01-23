@@ -1,36 +1,27 @@
 import {NextApiHandler, NextApiRequest, NextApiResponse} from "next";
+import { withSessions } from "../../../lib/withSissions";
 import getDatabaseConnection from "../../../lib/getDatabaseConnection";
 import md5 from "md5";
 
-const Sessions: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
+const Session: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   res.setHeader('Content-Type', 'application/json; charset=utf-8')
-  const { username, password } = req.body
-  
+  const { username, password} = req.body
+  console.log(req.session)
   const data = await (async () => {
-    const connection = await  getDatabaseConnection()
-     const user = await connection.manager.findOne('users', { where:{ username } })
-      if(user){
-        const passwordDigest = md5(password)
-        if(passwordDigest === user.passwordDigest) {
-          return {
-            code: 0,
-            data: '',
-            msg: '登录成功'
-          }
-        } else {
-          return {
-            code: 0,
-            data: '',
-            msg: '密码不匹配'
-          }
-        }
-      } else{
-        return {
-          code: 0,
-          data: username,
-          msg: '用户名不存在'
-        }
+    let data = {}
+    const connection = await getDatabaseConnection()
+    const User = await  connection.manager.findOne('users', { where: { username } })
+    if( User ) {
+      const passwordDigest = md5(password)
+      if(passwordDigest === User.passwordDigest){
+        req.session.set('current', User)
+        await req.session.save()
+        data =  { code : 0, data: 'ddd', msg: '登录成功' }
       }
+      else data =  { code: 1, data: username, msg: '密码错误' }
+    }
+    else data =  { code: 1, data: username, msg: '用户名不存在' }
+    return data
   })()
   req.statusCode = 200
   res.write(JSON.stringify(data))
@@ -38,4 +29,4 @@ const Sessions: NextApiHandler = async (req: NextApiRequest, res: NextApiRespons
 };
 
 
-export default Sessions
+export default withSessions( Session)

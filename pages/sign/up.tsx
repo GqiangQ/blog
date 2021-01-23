@@ -1,6 +1,7 @@
 import {NextPage} from "next";
 import {useCallback, useState} from "react";
 import axios from "axios";
+import {resolve} from "dns";
 
 const Sigin: NextPage = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ const Sigin: NextPage = () => {
     axios.post(`/api/v1/users`, formData)
       .then(
         (res)=>{
+          
           if(res.code === 0) {
             window.location.href = '/sign/in'
           }
