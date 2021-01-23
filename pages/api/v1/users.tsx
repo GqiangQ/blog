@@ -1,26 +1,32 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import {NextApiHandler, NextApiRequest, NextApiResponse} from "next";
 import getDatabaseConnection from "../../../lib/getDatabaseConnection";
 import md5 from 'md5'
 import {User} from "../../../src/entity/User";
-import {use} from "ast-types";
 
 
-const Posts = async(req:NextApiRequest, res: NextApiResponse) => {
-  res.setHeader('Ccontent-Type','application/json; charset=utf-8')
+const Users:NextApiHandler = async(req:NextApiRequest, res: NextApiResponse) => {
+  res.setHeader('Content-Type','application/json; charset=utf-8')
   const { username,password, passwordConfirmation } = req.body
-  // if (password !== passwordConfirmation){
-  //   data.code = 0
-  //   data.msg = '密码不一致'
-  // }
   const connection = await getDatabaseConnection()
-  const user = new User()
-  user.username = username.trim()
-  user.passwordDigest = md5(password)
-  await connection.manager.save(user)
+  
+  const data = await (async () =>{
+    if (password !== passwordConfirmation) return {code:0,data:'',msg: '密码不一致'}
+    const found = await connection.manager.find('users', {username: username})
+    if(found.length) return {code:0,data:'',msg: '用户已存在'}
+    else{
+      const user = new User()
+      user.username = username
+      user.passwordDigest = md5(password)
+      await connection.manager.save('users',user)
+      return {code:0, data:{ id: user.id}, msg: '添加成功'}
+      // return {code:0, data:{ }, msg: "假添加"}
+    }
+  })()
   req.statusCode = 200
-  res.write(JSON.stringify(user))
+  console.log(data)
+  res.write(JSON.stringify(data))
   res.end()
 };
 
 
-export default Posts
+export default Users

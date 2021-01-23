@@ -4,10 +4,10 @@ import { getPosts } from './../../../lib/posts'
 
 
 const Posts = async(req:NextApiRequest, res: NextApiResponse) => {
+  res.setHeader('Content-Type','application/json')
   res.statusCode = 200
   const fileNames = await getPosts()
   console.log(fileNames)
-  res.setHeader('Ccontent-Type','application/json')
   res.write(JSON.stringify(fileNames))
   res.end()
 };

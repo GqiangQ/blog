@@ -5,7 +5,7 @@ var _interopRequireDefault = require("F:/blog/node_modules/@babel/runtime/helper
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CreateUsers1610374438691 = void 0;
+exports.AddUniqueUsernameToUsers1611150309459 = void 0;
 
 var _regenerator = _interopRequireDefault(require("F:/blog/node_modules/@babel/runtime/regenerator"));
 
@@ -17,12 +17,12 @@ var _createClass2 = _interopRequireDefault(require("F:/blog/node_modules/@babel/
 
 var _typeorm = require("typeorm");
 
-var CreateUsers1610374438691 = /*#__PURE__*/function () {
-  function CreateUsers1610374438691() {
-    (0, _classCallCheck2["default"])(this, CreateUsers1610374438691);
+var AddUniqueUsernameToUsers1611150309459 = /*#__PURE__*/function () {
+  function AddUniqueUsernameToUsers1611150309459() {
+    (0, _classCallCheck2["default"])(this, AddUniqueUsernameToUsers1611150309459);
   }
 
-  (0, _createClass2["default"])(CreateUsers1610374438691, [{
+  (0, _createClass2["default"])(AddUniqueUsernameToUsers1611150309459, [{
     key: "up",
     value: function () {
       var _up = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(queryRunner) {
@@ -31,38 +31,13 @@ var CreateUsers1610374438691 = /*#__PURE__*/function () {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return queryRunner.createTable(new _typeorm.Table({
-                  name: 'users',
-                  columns: [{
-                    name: 'id',
-                    isGenerated: true,
-                    type: 'int',
-                    generationStrategy: "increment",
-                    isPrimary: true
-                  }, {
-                    name: 'username',
-                    type: 'varchar',
-                    isUnique: true
-                  }, {
-                    name: 'passwordDigest',
-                    type: 'varchar'
-                  }, {
-                    name: 'createAt',
-                    type: 'timestamp',
-                    isNullable: false,
-                    "default": 'now()'
-                  }, {
-                    name: 'updateAt',
-                    type: 'timestamp',
-                    isNullable: false,
-                    "default": 'now()'
-                  }]
+                return queryRunner.createIndex("users", new _typeorm.TableIndex({
+                  name: 'xxx',
+                  columnNames: ['username'],
+                  isUnique: true
                 }));
 
               case 2:
-                return _context.abrupt("return", _context.sent);
-
-              case 3:
               case "end":
                 return _context.stop();
             }
@@ -84,10 +59,6 @@ var CreateUsers1610374438691 = /*#__PURE__*/function () {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return queryRunner.dropTable('users');
-
-              case 2:
               case "end":
                 return _context2.stop();
             }
@@ -102,7 +73,7 @@ var CreateUsers1610374438691 = /*#__PURE__*/function () {
       return down;
     }()
   }]);
-  return CreateUsers1610374438691;
+  return AddUniqueUsernameToUsers1611150309459;
 }();
 
-exports.CreateUsers1610374438691 = CreateUsers1610374438691;
+exports.AddUniqueUsernameToUsers1611150309459 = AddUniqueUsernameToUsers1611150309459;

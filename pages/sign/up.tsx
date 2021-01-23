@@ -16,8 +16,11 @@ const Sigin: NextPage = () => {
   
     axios.post(`/api/v1/users`, formData)
       .then(
-        (req)=>{
-          console.log(req.data)
+        (res)=>{
+          if(res.code === 0) {
+            window.location.href = '/sign/in'
+          }
+          alert(res.msg)
         },
         (error)=>{
           console.log(error)
