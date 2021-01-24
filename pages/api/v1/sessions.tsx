@@ -6,7 +6,6 @@ import md5 from "md5";
 const Session: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   res.setHeader('Content-Type', 'application/json; charset=utf-8')
   const { username, password} = req.body
-  console.log(req.session)
   const data = await (async () => {
     let data = {}
     const connection = await getDatabaseConnection()
@@ -16,6 +15,7 @@ const Session: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
       if(passwordDigest === User.passwordDigest){
         req.session.set('current', User)
         await req.session.save()
+        console.log()
         data =  { code : 0, data: 'ddd', msg: '登录成功' }
       }
       else data =  { code: 1, data: username, msg: '密码错误' }
