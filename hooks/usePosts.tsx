@@ -1,17 +1,21 @@
-import axios from 'axios'
-import { useEffect, useState } from "react";
-export const usePosts = () => {
-  const [posts, setPosts] = useState([])
-  const [loading, setLoading] = useState(false)
+import {useEffect, useState} from 'react';
+import axios from 'axios';
 
+export const usePosts = () => {
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
   useEffect(() => {
-    setLoading(true)
-    axios.get('/api/v1/posts').then(res => {
-      setPosts(res.data)
-      setLoading(false)
-    })
-  },[]) // 加[] 表示第一次请求，不加表示每次都请求
-  return {
-    posts, loading
-  }
-}
+    setIsLoading(true);
+    axios.get('/api/v1/posts').then(response => {
+      setPosts(response.data);
+      setIsLoading(false);
+      if (response.data.length === 0) {
+        setIsEmpty(true);
+      }
+    }, () => {
+      setIsLoading(false);
+    });
+  }, []);
+  return {posts, setPosts, isLoading, setIsLoading, isEmpty, setIsEmpty};
+};

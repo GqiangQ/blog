@@ -1,38 +1,40 @@
 {
-   "name": "blog",
-   "version": "0.1.0",
-   "private": true,
-   "scripts": {
-      "dev": " concurrently \"next dev\" \"babel ./src -w --out-dir dist --extensions .ts,.tsx\" ",
-      "build": "next build",
-      "m:create": "typeorm migration:create",
-      "m:run": "typeorm migration:run",
-      "m:revert": "typeorm migration:revert",
-      "e:create": "typeorm entity:create",
-      "babel:build": "babel ./src --out-dir dist --extensions \".ts,.tsx\" "
-   },
-   "dependencies": {
-      "@babel/cli": "^7.12.10",
-      "@babel/core": "^7.12.10",
-      "@types/node": "^14.14.20",
-      "axios": "^0.21.1",
-      "browserslist": "^4.16.1",
-      "md5": "^2.3.0",
-      "next": "10.0.3",
-      "next-iron-session": "^4.1.10",
-      "pg": "^8.4.0",
-      "react": "17.0.1",
-      "react-dom": "17.0.1",
-      "reflect-metadata": "^0.1.10",
-      "typeorm": "0.2.29"
-   },
-   "devDependencies": {
-      "@babel/plugin-proposal-decorators": "^7.12.12",
-      "@types/axios": "^0.14.0",
-      "@types/md5": "^2.2.1",
-      "@types/react": "^17.0.0",
-      "@types/react-dom": "^17.0.0",
-      "gray-matter": "^4.0.2",
-      "typescript": "3.3.3333"
-   }
+  "name": "nextjs-blog-1",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"next dev\" \"babel -w ./src --out-dir dist --extensions .ts,.tsx\"",
+    "build": "next build",
+    "start": "next start",
+    "m:create": "typeorm migration:create",
+    "m:run": "typeorm migration:run",
+    "migration:revert": "typeorm migration:revert",
+    "entity:create": "typeorm entity:create"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.10.1",
+    "axios": "^0.19.2",
+    "gray-matter": "^4.0.2",
+    "marked": "^1.1.0",
+    "next": "9.4.1",
+    "pg": "^8.2.1",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "reflect-metadata": "^0.1.13",
+    "sass": "^1.26.5",
+    "typeorm": "^0.2.25",
+    "ua-parser-js": "^0.7.21"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.10.1",
+    "@types/axios": "^0.14.0",
+    "@types/marked": "^0.7.4",
+    "@types/node": "^14.0.6",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "@types/ua-parser-js": "^0.7.33",
+    "concurrently": "^5.2.0",
+    "next-images": "^1.4.0",
+    "typescript": "^3.9.2"
+  }
 }

@@ -1,16 +1,12 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import path from 'path'
-import { getPosts } from './../../../lib/posts'
+import {NextApiHandler} from 'next';
+import {getPosts} from 'lib/posts';
 
 
-const Posts = async(req:NextApiRequest, res: NextApiResponse) => {
-  res.setHeader('Content-Type','application/json')
-  res.statusCode = 200
-  const fileNames = await getPosts()
-  console.log(fileNames)
-  res.write(JSON.stringify(fileNames))
-  res.end()
+const Posts: NextApiHandler = async (req, res) => {
+  const posts = await getPosts();
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'application/json');
+  res.write(JSON.stringify(posts));
+  res.end();
 };
-
-
-export default Posts
+export default Posts;

@@ -1,28 +1,28 @@
 "use strict";
 
-var _interopRequireDefault = require("F:/blog/node_modules/@babel/runtime/helpers/interopRequireDefault");
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CreateComments1610377540024 = void 0;
+exports.CreatePosts1612950454203 = void 0;
 
-var _regenerator = _interopRequireDefault(require("F:/blog/node_modules/@babel/runtime/regenerator"));
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
-var _asyncToGenerator2 = _interopRequireDefault(require("F:/blog/node_modules/@babel/runtime/helpers/asyncToGenerator"));
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
-var _classCallCheck2 = _interopRequireDefault(require("F:/blog/node_modules/@babel/runtime/helpers/classCallCheck"));
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
-var _createClass2 = _interopRequireDefault(require("F:/blog/node_modules/@babel/runtime/helpers/createClass"));
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
 var _typeorm = require("typeorm");
 
-var CreateComments1610377540024 = /*#__PURE__*/function () {
-  function CreateComments1610377540024() {
-    (0, _classCallCheck2["default"])(this, CreateComments1610377540024);
+var CreatePosts1612950454203 = /*#__PURE__*/function () {
+  function CreatePosts1612950454203() {
+    (0, _classCallCheck2["default"])(this, CreatePosts1612950454203);
   }
 
-  (0, _createClass2["default"])(CreateComments1610377540024, [{
+  (0, _createClass2["default"])(CreatePosts1612950454203, [{
     key: "up",
     value: function () {
       var _up = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(queryRunner) {
@@ -32,29 +32,29 @@ var CreateComments1610377540024 = /*#__PURE__*/function () {
               case 0:
                 _context.next = 2;
                 return queryRunner.createTable(new _typeorm.Table({
-                  name: 'comments',
+                  name: 'posts',
                   columns: [{
                     name: 'id',
                     isGenerated: true,
                     type: 'int',
-                    generationStrategy: "increment",
+                    generationStrategy: 'increment',
                     isPrimary: true
                   }, {
-                    name: 'userId',
-                    type: 'int'
-                  }, {
-                    name: 'postId',
-                    type: 'int'
+                    name: 'title',
+                    type: 'varchar'
                   }, {
                     name: 'content',
                     type: 'text'
                   }, {
-                    name: 'createAt',
+                    name: 'userId',
+                    type: 'int'
+                  }, {
+                    name: 'createdAt',
                     type: 'timestamp',
                     isNullable: false,
                     "default": 'now()'
                   }, {
-                    name: 'updateAt',
+                    name: 'updatedAt',
                     type: 'timestamp',
                     isNullable: false,
                     "default": 'now()'
@@ -86,7 +86,7 @@ var CreateComments1610377540024 = /*#__PURE__*/function () {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                queryRunner.dropTable('comments');
+                queryRunner.dropTable('posts');
 
               case 1:
               case "end":
@@ -103,7 +103,7 @@ var CreateComments1610377540024 = /*#__PURE__*/function () {
       return down;
     }()
   }]);
-  return CreateComments1610377540024;
+  return CreatePosts1612950454203;
 }();
 
-exports.CreateComments1610377540024 = CreateComments1610377540024;
+exports.CreatePosts1612950454203 = CreatePosts1612950454203;
