@@ -1,0 +1,47 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
+
+var _User = require("./entity/User");
+
+require("reflect-metadata");
+
+var _typeorm = require("typeorm");
+
+(0, _typeorm.createConnection)().then( /*#__PURE__*/function () {
+  var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(connection) {
+    var manager, user;
+    return _regenerator["default"].wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            manager = connection.manager;
+            console.log('posts 数据填充了');
+            user = new _User.User();
+            user.username = 'gqq';
+            user.password = 'gqq';
+            user.email = '12345@qq.com';
+            _context.next = 8;
+            return manager.save(user);
+
+          case 8:
+            connection.close();
+
+          case 9:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function (_x) {
+    return _ref.apply(this, arguments);
+  };
+}())["catch"](function (error) {
+  return console.log(error);
+});
