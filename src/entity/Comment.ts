@@ -3,7 +3,6 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from 'typeorm';
@@ -16,6 +15,11 @@ export class Comment {
   id: number;
   @Column('text')
   content: string;
+  @Column('int')
+  userId: number;
+  @Column('int')
+  postId: number;
+
   @CreateDateColumn()
   createdAt: Date;
   @UpdateDateColumn()
