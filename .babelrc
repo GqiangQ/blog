@@ -8,6 +8,7 @@
       {
         "legacy": true
       }
-    ]
+    ],
+    ["import", { "libraryName": "antd", "libraryDirectory": "lib"}, "antd"]
   ]
 }

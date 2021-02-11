@@ -1,10 +1,7 @@
 import {GetServerSideProps, GetServerSidePropsContext, NextPage} from 'next';
-// import axios from 'axios';
-// import {withSession} from '../lib/withSession';
-// import {User} from '../src/entity/User';
-// import {useForm} from '../hooks/useForm';
-import qs from 'querystring';
+import axios, { AxiosResponse } from 'axios';
 import { useState } from 'react';
+import { Input, Card, Button,message } from 'antd';
 
 const SignIn: NextPage = (props) => {
   const [form,setForm] = useState({
@@ -12,15 +9,28 @@ const SignIn: NextPage = (props) => {
     username: ''
   })
   const submit = () => {
+    if (!form.username || !form.password) return message.info('用户名或密码不能为空!')
+    axios.post('/api/v1/user/in', form).then(({status,data,...a}) => {
+      if(status !== 200) return message.error('xc')
+      if(data.code) {
+        message.success(data.msg)
+      } else {
+        message.error(data.msg)
+      }
+    })
   }
-  return (
+  return<div style={{width: '100vw', height:'100vh'}} >
+    <Card style={{width: '350px', position: 'absolute',top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} hoverable>
+      <h1 style={{ textAlign:'center' }}>登录</h1>
+      <Input style={{ marginBottom:'1em' }} value={form.username} onChange={(e)=>setForm({...form, username:e.target.value})} placeholder="输入用户名或邮箱" allowClear />
+      <Input.Password style={{ marginBottom:'1em' }} value={form.password} onChange={(e)=>setForm({...form, password:e.target.value})}  placeholder="输入密码" />
+      <Button style={{ marginBottom:'1em' }}  type="primary" block onClick={submit}> 登录 </Button>
       <div>
-        <h1>登录</h1>
-        <div><input defaultValue={form.username} onChange={(e:any) =>setForm({ ...form,username:e.target.value })} type="text" placeholder="请输入用户名或邮箱"/></div>
-        <div><input defaultValue={form.password} type="password" placeholder="请输入密码"/></div>
-        <div><button type="submit" onClick={submit}>登录</button></div>
+        注册
+        忘记密码
       </div>
-  );
+    </Card>
+  </div>                                                                  
 };
 
 export default SignIn;
