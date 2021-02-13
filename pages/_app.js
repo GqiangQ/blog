@@ -2,6 +2,9 @@ import Head from 'next/head'
 // import 'antd/dist/antd.css'
 import 'antd/dist/antd.css';
 import 'styles/global.scss'
+import 'braft-editor/dist/index.css'
+import 'braft-editor/dist/index.css'
+import 'braft-extensions/dist/code-highlighter.css'
 import zhCN from 'antd/lib/locale/zh_CN';
 import { ConfigProvider } from 'antd';
 
