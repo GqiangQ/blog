@@ -8,7 +8,7 @@ const Posts: NextApiHandler = async (req, res) => {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   const {username, password} = req.body;
   const connection = await getDatabaseConnection();// 第一次链接能不能用 get
-  let option:USERTYPE = {password}
+  let option:USERTYPE = {password:'blog'+password+md5('gqq')}
   if(/^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$/.test(username)) {
     option.email = username
   } else {
@@ -19,6 +19,7 @@ const Posts: NextApiHandler = async (req, res) => {
     msg:'ddd'
   }
   const user =await connection.manager.findOne(User, {where: option});
+  console.log(user,option)
   if (user){
     resdata.data = {username:user.username}
     resdata.msg = '登录成功'

@@ -31,13 +31,25 @@ const Posts: NextApiHandler = async (req, res) => {
     resdata.code = 0
     resdata.msg = '验证码无效，请重新获取验证码！'
   } else{
-    let option:USERTYPE = {password}
-    const user =await connection.manager.findOne(User, {where: option});
-    if(user) {
+    const nameUser =await connection.manager.findOne(User, {where: {username}});
+    const emailUser =await connection.manager.findOne(User, {where: {email}});
+    console.log(emailUser,nameUser)
+    if(nameUser || emailUser) {
       resdata.code = 0
-      resdata.msg = '用户名已经存在'
+      resdata.msg = nameUser?'用户名已经存在！':'邮箱已被注册！'
     } else {
-      resdata.msg = '注册成功'
+      const user = new User()
+      user.username = username
+      user.password = 'blog'+md5(password)+md5('gqq')
+      user.email = email
+      const U = await connection.manager.save(user)
+      if(U){
+        resdata.msg = '注册成功！'
+      } else {
+        resdata.code = 0
+        resdata.msg = '注册失败，请重试！'
+      }
+
     }
   }
 

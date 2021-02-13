@@ -2,6 +2,7 @@ import {GetServerSideProps, GetServerSidePropsContext, NextPage} from 'next';
 import axios, { AxiosResponse } from 'axios';
 import { useState } from 'react';
 import { Input, Card, Button,message } from 'antd';
+import md5 from 'md5';
 
 const SignIn: NextPage = (props) => {
   const [form,setForm] = useState({
@@ -10,7 +11,8 @@ const SignIn: NextPage = (props) => {
   })
   const submit = () => {
     if (!form.username || !form.password) return message.info('用户名或密码不能为空!')
-    axios.post('/api/v1/user/in', form).then(({status,data,...a}) => {
+    const { username, password } = form
+    axios.post('/api/v1/user/in', { username, password: md5(password) }).then(({status,data,...a}) => {
       if(status !== 200) return message.error('xc')
       if(data.code) {
         message.success(data.msg)
