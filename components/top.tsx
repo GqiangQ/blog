@@ -25,16 +25,17 @@ const Top = () => {
           <Button type="link" href="/?type=follow">关注</Button>
         </div>
         <Search placeholder="input search text" style={{ width: 300 }}  enterButton />
+        <Button type="link" href="/posts/add">写博客</Button>
         <div>
-        <Popover placement="bottomRight" trigger="hover"
-          content={<div>
-            <p>Content</p>
-            <p>退出</p>
-          </div>}
-        >
-          我的中心
-          <img src="" alt=""/>
-        </Popover>
+          <Popover placement="bottomRight" trigger="hover"
+            content={<div>
+              <p>Content</p>
+              <p>退出</p>
+            </div>}
+          >
+            我的中心
+            <img src="" alt=""/>
+          </Popover>
           </div>
       </div>
     </div>

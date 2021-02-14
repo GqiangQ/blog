@@ -22,6 +22,8 @@ export class Post {
   createdAt: Date;
   @UpdateDateColumn()
   updatedAt: Date;
+  @Column('int')
+  userId: number;
   // 关系
   @ManyToOne('User', 'posts')
   user: User;

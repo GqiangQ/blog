@@ -13,3 +13,4 @@ type Post = {
   content: string;
   htmlContent: string;
 }
+declare module '@re-editor/core'

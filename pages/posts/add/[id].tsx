@@ -1,8 +1,8 @@
 import React from 'react';
-import {getPost, getPostIds} from '../../lib/posts';
+import {getPost, getPostIds} from 'lib/posts';
 import {GetServerSideProps, NextPage} from 'next';
-import {getDatabaseConnection} from '../../lib/getDatabaseConnection';
-import {Post} from '../../src/entity/Post';
+import {getDatabaseConnection} from 'lib/getDatabaseConnection';
+import {Post} from 'src/entity/Post';
 import {UAParser} from 'ua-parser-js';
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 const postsShow: NextPage<Props> = (props) => {
   const {post} = props;
   return (
-    <div style={{width:'960px',background:'#fff',margin:'auto',padding:'1em'}}>
+    <div>
       <h1>{post.title}</h1>
       <article dangerouslySetInnerHTML={{__html: post.content}}>
       </article>
@@ -30,4 +30,3 @@ export const getServerSideProps: GetServerSideProps<any, { id: string }> = async
     }
   };
 };
-

@@ -1,7 +1,7 @@
 import {GetServerSideProps, NextPage,} from 'next';
 import {UAParser} from 'ua-parser-js';
 import {useEffect, useState} from 'react';
-import { MessageOutlined,SyncOutlined, LikeOutlined,SendOutlined } from '@ant-design/icons';
+import { MessageOutline, LikeOutline } from '@ant-design/icons';
 import { getDatabaseConnection } from '../lib/getDatabaseConnection'
 import { Post } from 'src/entity/Post';
 import day from 'dayjs'
@@ -28,19 +28,14 @@ const index: NextPage<Props> = (props) => {
     pageSizeOptions:[1,10, 20, 50, 100]
   })
   console.log(pageOption)
-  const pageChange = (current:number,pageSize:number ) =>{
+  const pageChange = (...Option:any ) =>{
+    const [ current,pageSize ] =Option
     setPageOption({
       ...pageOption,
       current,
       pageSize
     })
     window.location.href = `/?current=${current}&pageSize=${pageSize}`
-    // Axios.get('/', {
-    //   params:{
-    //     ...qs.parse(window.history.state.url.substr(2)),
-    //     current, pageSize
-    //   }
-    // })
   }
   
   return (
@@ -56,16 +51,16 @@ const index: NextPage<Props> = (props) => {
                   <a>{post.title}</a>
                 </Link>
               </h2>
-              <div>{post.content}</div>
+              {/* <div>{post.content}</div> */}
               <div style={{display: 'flex',justifyContent:'flex-end'}}>
-                <LikeOutlined />
-                <MessageOutlined />
+                {/* <LikeOutline />
+                <MessageOutline /> */}
               </div>
             </div>
           )}
         </div>
         <div style={{display: 'flex', justifyContent: 'flex-end', marginTop: '.2em', padding: '1em', background: '#fff',}}>
-          <Pagination {...pageOption} onChange={pageChange}/>
+          <Pagination total={pageOption.total} current={pageOption.current} pageSize={pageOption.pageSize} onChange={pageChange}/>
         </div>
       </div>
     </div>
@@ -74,13 +69,12 @@ const index: NextPage<Props> = (props) => {
 export default index;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { pageSize=1,type='home',current=1} = context.query
+  const { pageSize=10,type='home',current=1} = context.query
   if (type === 'home'){
 
   } else {
 
   }
-  console.log(current,pageSize,type,context.query)
   const connect = await getDatabaseConnection()
   let [posts,total] = await connect.manager.findAndCount(Post, {skip:(+current-1)*+pageSize, take:+pageSize})
   posts = JSON.parse(JSON.stringify(posts))
