@@ -2,6 +2,7 @@ import {NextApiHandler} from 'next';
 import {getDatabaseConnection} from '../../../../lib/getDatabaseConnection';
 import {User} from '../../../../src/entity/User';
 import md5 from 'md5';
+import sessionPool from 'lib/sessionPool';
 
 
 const Posts: NextApiHandler = async (req, res) => {
@@ -14,16 +15,17 @@ const Posts: NextApiHandler = async (req, res) => {
   } else {
     option.username = username
   }
+  option.password = 'blog'+password+md5('gqq')
   let resdata:REQ = {
     code:1,
     msg:'ddd'
   }
   const user =await connection.manager.findOne(User, {where: option});
-  console.log(user,option)
   if (user){
-    resdata.data = {username:user.username}
+    resdata.data = {username:user.username,token:sessionPool.set(user.id)}
     resdata.msg = '登录成功'
   } else {
+    resdata.code = 0
     resdata.data = {}
     resdata.msg = '用户名或密码不正确'
   }

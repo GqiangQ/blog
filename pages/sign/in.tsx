@@ -15,7 +15,9 @@ const SignIn: NextPage = (props) => {
     axios.post('/api/v1/user/in', { username, password: md5(password) }).then(({status,data,...a}) => {
       if(status !== 200) return message.error('xc')
       if(data.code) {
+        window.localStorage.setItem('token',data.data.token)
         message.success(data.msg)
+        window.location.href = '/'
       } else {
         message.error(data.msg)
       }
@@ -27,9 +29,8 @@ const SignIn: NextPage = (props) => {
       <Input style={{ marginBottom:'1em' }} value={form.username} onChange={(e)=>setForm({...form, username:e.target.value})} placeholder="输入用户名或邮箱" allowClear />
       <Input.Password style={{ marginBottom:'1em' }} value={form.password} onChange={(e)=>setForm({...form, password:e.target.value})}  placeholder="输入密码" />
       <Button style={{ marginBottom:'1em' }}  type="primary" block onClick={submit}> 登录 </Button>
-      <div>
-        注册
-        忘记密码
+      <div style={{display:'flex',justifyContent:'flex-end'}}>
+        <Button type="link" href='/sign/up'>注册</Button>
       </div>
     </Card>
   </div>                                                                  

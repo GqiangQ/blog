@@ -13,7 +13,9 @@ export default {
     return sessionList.get(key) || null
   },
   set(id:number){
-        sessionList.set(`${md5(id+'')}${new Date().getTime()}`,{ id })
+    const name = `${md5(id+'')}${new Date().getTime()}`
+        sessionList.set(name,{ id })
+        return name
   },
   del(token:string){
     sessionList.delete(token)

@@ -2,6 +2,7 @@ import {GetServerSideProps, GetServerSidePropsContext, NextPage} from 'next';
 import axios, { AxiosResponse } from 'axios';
 import { useState } from 'react';
 import { Input, Card, Button,message,  } from 'antd';
+import md5 from 'md5';
 const { Search } = Input;
 const SignIn: NextPage = (props) => {
   const [form,setForm] = useState({
@@ -50,10 +51,15 @@ const SignIn: NextPage = (props) => {
     if (!form.password || !form.passwordAgain||!form.username||!form.email||!form.code) return message.info('信息不能为空！')
     if (!/^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$/.test(form.email)) return message.info('邮箱不正确！')
     if (form.password !== form.passwordAgain) return message.info('两次密码不一致！')
-    axios.post('/api/v1/user/up',form).then(({status,data,...a}) =>{
+    axios.post('/api/v1/user/up',{
+      ...form,
+      password: md5(form.password),
+      passwordAgain: md5(form.passwordAgain)
+    }).then(({status,data,...a}) =>{
       if(status !== 200) return message.error('xc')
       if(data.code) {
         message.success(data.msg)
+        window.location.href='/sign/in'
       } else {
         message.error(data.msg)
       }
@@ -81,7 +87,6 @@ const SignIn: NextPage = (props) => {
       {/* <Search style={{ marginBottom:'1em' }} maxLength={6} placeholder="输入验证码" onSearch={send} allowClear enterButton={seeding.button} /> */}
       <Button style={{ marginBottom:'1em' }} type="primary"  block onClick={submit}> 注册 </Button>
       <div>
-        登录
         忘记密码
       </div>
     </Card>

@@ -10,6 +10,7 @@ import Top from 'components/top'
 import { Pagination  } from "antd"
 import Axios from 'axios';
 import qs from 'querystring'
+import { User } from 'src/entity/User';
 
 
 type Props = {

@@ -10,7 +10,8 @@ const Posts: NextApiHandler = async (req, res) => {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   let resdata:REQ = {
     code:1,
-    msg:''
+    msg:'',
+    data:{}
   }
   const {username, password, passwordAgain,email,code} = req.body;
   const connection = await getDatabaseConnection();// 第一次链接能不能用 get
@@ -40,7 +41,8 @@ const Posts: NextApiHandler = async (req, res) => {
     } else {
       const user = new User()
       user.username = username
-      user.password = 'blog'+md5(password)+md5('gqq')
+      user.password = 'blog'+password+md5('gqq')
+      console.log(user.password,password)
       user.email = email
       const U = await connection.manager.save(user)
       if(U){
