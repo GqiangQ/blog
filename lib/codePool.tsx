@@ -24,7 +24,7 @@ export default {
       service: 'qq',
       auth: {
         user: '740407980@qq.com',
-        pass: 'dzygadqvszeobdia' //授权码,通过QQ获取
+        pass: 'tpukirstaukwbbef' //授权码,通过QQ获取
       }
     });
     // 六位验证码
