@@ -26,7 +26,6 @@ const Top = () => {
         window.localStorage.removeItem('token')
       },
       onCancel() {
-        console.log('Cancel');
       },
     });
   }

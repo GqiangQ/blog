@@ -22,17 +22,12 @@ const PostsIndex= () => {
   const submit = () => {
     if (!form.title) return
     if(!localStorage.getItem('token')) return message.info('oooo! 您未登录,怎么办？？？请在一个新页面登录后在回来提交把！！！')
-    console.log({
-      title:form.title,
-      content: form.content.toHTML()
-    })
     Axios.post('/api/v1/posts/add',{
         token:localStorage.getItem('token'),
         title:form.title,
         content: form.content.toHTML()
     })
     .then(({status,data,statusText,...a}) => {
-      console.log(a)
       if(status !== 200) return message.error(statusText)
       if(data.code) {
         message.success(data.msg)

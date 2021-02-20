@@ -16,7 +16,6 @@ const SignIn: NextPage = (props) => {
   const send = ()=>{
     if (seeding.status) return
     axios.post('/api/v1/seedcode/code',{email:form.email}).then((res: any)=>{
-      console.log(res)
     })
     setSeeding({
       status:true,

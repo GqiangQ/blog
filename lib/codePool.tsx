@@ -10,11 +10,9 @@ type CODELIST = {
 const globalAny:any = global;
 globalAny.codeList = globalAny.codeList || new Map()
 const codeList = globalAny.codeList
-console.log('初始化！！！！！！！！！！！！！！！！！！！看codeList',codeList)
 export default {
   // 查看code
   find(key:string){
-    console.log('查看list',codeList)
     return codeList.get(key) || false
   },
   seed(email:string){
@@ -40,7 +38,6 @@ export default {
     };
     // 执行发送
     transporter.sendMail(mailOpt, (error, info) => {
-      console.log(error, info)
       if (error) {
         status = false
       } else {
@@ -49,12 +46,8 @@ export default {
           email,
           code
         })
-        console.log('存储了code',dayjs(new Date()).format('YYYY-MM-DD hh:mm:ss'))
-        console.log('查看了list',codeList)
         const itemId = setTimeout(()=>{
-          let newCodeList = codeList
           codeList.delete(email+code)
-          console.log('清除了code',dayjs(new Date()).format('YYYY-MM-DD hh:mm:ss'))
           clearTimeout(itemId)
         },1000*60*3)
         return true

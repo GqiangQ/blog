@@ -16,9 +16,6 @@ const Posts: NextApiHandler = async (req, res) => {
   const {username, password, passwordAgain,email,code} = req.body;
   const connection = await getDatabaseConnection();// 第一次链接能不能用 get
   
-  // schedule('10 * * * * *', () => {
-  //   console.log(new Date());
-  // })
 
   if(password!==passwordAgain) {
     resdata.code = 0
@@ -34,7 +31,6 @@ const Posts: NextApiHandler = async (req, res) => {
   } else{
     const nameUser =await connection.manager.findOne(User, {where: {username}});
     const emailUser =await connection.manager.findOne(User, {where: {email}});
-    console.log(emailUser,nameUser)
     if(nameUser || emailUser) {
       resdata.code = 0
       resdata.msg = nameUser?'用户名已经存在！':'邮箱已被注册！'
@@ -42,7 +38,6 @@ const Posts: NextApiHandler = async (req, res) => {
       const user = new User()
       user.username = username
       user.password = 'blog'+password+md5('gqq')
-      console.log(user.password,password)
       user.email = email
       const U = await connection.manager.save(user)
       if(U){

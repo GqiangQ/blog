@@ -6,7 +6,6 @@ type sessionList = {
 const globalAny:any = global;
 globalAny.sessionList = globalAny.sessionList || new Map()
 const sessionList = globalAny.sessionList
-console.log('初始化！！！！！！！！！！！！！！！！！！！看sessionList',sessionList)
 export default {
   // 查看code
   find(key:string){

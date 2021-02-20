@@ -21,7 +21,6 @@ const Posts: NextApiHandler = async (req, res) => {
     post.title = title
     post.content = content
     post.userId = session.find(token).id
-    console.log(post)
     const {id} = await connection.manager.save(post)
     resdata.code = 1
     resdata.data = { id }

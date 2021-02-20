@@ -28,7 +28,6 @@ const index: NextPage<Props> = (props) => {
     pageSize,
     pageSizeOptions:[1,10, 20, 50, 100]
   })
-  console.log(pageOption)
   const pageChange = (...Option:any ) =>{
     const [ current,pageSize ] =Option
     setPageOption({
