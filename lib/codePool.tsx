@@ -40,6 +40,7 @@ export default {
     };
     // 执行发送
     transporter.sendMail(mailOpt, (error, info) => {
+      console.log(error, info)
       if (error) {
         status = false
       } else {
