@@ -48,7 +48,7 @@ const PostsIndex= () => {
     })
   }
   return<>
-  <div style={{width:'960px',background:'#fff',margin:'auto',padding:'1em'}}>
+  <div style={{maxWidth:'960px',background:'#fff',margin:'auto',padding:'1em'}}>
     <div style={{display:'flex',justifyContent:'flex-end'}}>
       <Button style={{marginRight:'1em'}} type='primary' ghost onClick={showView}>{view.status?'编写':'预览'}</Button>
       <Button type={(form.title)?'primary':'dashed'} onClick={submit}>发表</Button>

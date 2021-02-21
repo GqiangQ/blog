@@ -39,9 +39,9 @@ const index: NextPage<Props> = (props) => {
   }
   
   return (
-    <div style={{minWidth:'960px',overflow:'auto'}} >
+    <div>
       <Top/>
-      <div style={{maxWidth: '960px',margin: '70px auto',}}>
+      <div style={{maxWidth:'960px',overflow:'auto',margin:'70px auto'}} >
         <div>
           {posts.map(post=>
             <div key={post.id} style={{background:'#fff',padding:'1em 1.2em',borderBottom:'1px solid #f5f6f7',}}>

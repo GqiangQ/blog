@@ -11,7 +11,7 @@ type Props = {
 const postsShow: NextPage<Props> = (props) => {
   const {post} = props;
   return (
-    <div style={{width:'960px',minHeight:'75vh',background:'#fff',margin:'auto',padding:'1em'}}>
+    <div style={{maxWidth:'960px',minHeight:'75vh',background:'#fff',margin:'auto',padding:'1em'}}>
       <h1 style={{textAlign:'center'}}>{post.title}</h1>
       <article dangerouslySetInnerHTML={{__html: post.content}}>
       </article>

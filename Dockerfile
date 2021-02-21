@@ -1,6 +1,6 @@
-FROM node:14
+FROM node:12.18.1
 # Create app directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
@@ -18,4 +18,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD [ "npm","run" "dev" ]
+CMD [ "yarn" "dev" ]
