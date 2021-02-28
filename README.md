@@ -23,7 +23,7 @@ yarn start
 m:create -n xxxx
 
 运行命令创建表
-yarn m:runm:run
+yarn m:run
 
 \l 查看库
 \c xxx 查看表内容
