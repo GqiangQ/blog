@@ -2,7 +2,7 @@
 创建dopcker
 ~~~
 mkdir blog-data
-docker run -v "$PWD/blog-data":/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_USER=blog -d postgres:12.2
+docker  run --name postgresql  -v "$PWD/blog-data":/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_USER=blog -e POSTGRES_PASSWORD=blog -d postgres:12.2
 ~~~
 
 ## 开发
